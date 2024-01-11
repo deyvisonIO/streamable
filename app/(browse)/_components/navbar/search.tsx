@@ -17,7 +17,7 @@ export function Search() {
 
         if (!value) return;
         const url = qs.stringifyUrl({
-            url: '/',
+            url: '/search',
             query: {
                 term: value,
             }
@@ -41,7 +41,7 @@ export function Search() {
             />
             {value && (
                 <X
-                    className="absolute right-14 text-muted-foreground cursor-pointer hover:opacity-75 transition h-5 w-5 "
+                    className="absolute top-2.5 right-14 text-muted-foreground cursor-pointer hover:opacity-75 transition h-5 w-5"
                     onClick={onClear}
                 />
             )}
