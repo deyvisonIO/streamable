@@ -24,7 +24,7 @@ export function Logo() {
             </div>
             <div className={`hidden lg:block ${cn(font.className)}`}>
                 <p className="text-lg font-extrabold">Streamable</p>
-                <p className="text-xs font-normal text-muted-foreground">Let&apos;s play</p>
+                <p className="text-xs font-normal text-muted-foregroun">Let&apos;s play</p>
             </div>
         </div>
     </Link>
