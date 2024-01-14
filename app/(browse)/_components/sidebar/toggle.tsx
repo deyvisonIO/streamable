@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Hint } from "@/components/ui/hint";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useSidebar } from "@/store/use-sidebar"
 import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
 
@@ -9,7 +10,6 @@ export function Toggle() {
   const { collapsed, onExpand, onCollapse } = useSidebar((state) => state);
 
   const label = collapsed ? "Expand" : "Collapse";
-  ;
 
   return (
     <>
@@ -35,5 +35,15 @@ export function Toggle() {
         </div>
       )}
     </>
+  )
+}
+
+
+export function ToggleSkeleton() {
+  return (
+  <div className="p-3 pl-6 mb-2 hidden lg:flex items-center justify-between w-full">
+      <Skeleton className="h-6 w-[100px]"/>
+      <Skeleton className="h-6 w-6"/>
+    </div>
   )
 }
