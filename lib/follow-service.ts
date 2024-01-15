@@ -5,6 +5,9 @@ import { getSelf } from "./auth-service"
 export async function isFollowingUser(id: string) {
   try {
     const self = await getSelf();
+
+    if (self.id === id) return true
+
     const otherUser = await db.user.findUnique({
       where: {
         id,
@@ -12,8 +15,8 @@ export async function isFollowingUser(id: string) {
     });
     if (!otherUser) throw new Error("User not found!")
 
-    if (otherUser.id === self.id) return true
 
+    // TODO: Replace findFirst with findUnique for faster query
     const existingFollow = await db.follow.findFirst({
       where: {
         followingId: otherUser.id,
@@ -30,6 +33,9 @@ export async function isFollowingUser(id: string) {
 
 export async function followUser(id: string) {
   const self = await getSelf();
+
+  if (self.id === id) throw new Error("Cannot follow yourself!")
+
   const otherUser = await db.user.findUnique({
     where: {
       id,
@@ -38,7 +44,6 @@ export async function followUser(id: string) {
 
   if (!otherUser) throw new Error("User not found!")
 
-  if (otherUser.id === self.id) throw new Error("Cannot follow yourself!")
 
   const existingFollow = await db.follow.findFirst({
     where: {
@@ -64,6 +69,9 @@ export async function followUser(id: string) {
 
 export async function unFollowUser(id: string) {
   const self = await getSelf();
+
+  if (self.id === id) throw new Error("Cannot unfollow yourself!")
+
   const otherUser = await db.user.findUnique({
     where: {
       id,
@@ -72,7 +80,6 @@ export async function unFollowUser(id: string) {
 
   if (!otherUser) throw new Error("User not found!")
 
-  if (otherUser.id === self.id) throw new Error("Cannot unfollow yourself!")
 
 
   const existingFollow = await db.follow.findFirst({
@@ -102,6 +109,13 @@ export async function getFollowedUsers() {
     const followedUsers = db.follow.findMany({
       where: {
         followerId: self.id,
+        following: {
+          blocking: {
+            none: {
+              blockedId: self.id,
+            }
+          }
+        }
       },
       include: {
         following: true,
