@@ -94,3 +94,23 @@ export async function unFollowUser(id: string) {
 
   return unfollow;
 }
+
+export async function getFollowedUsers() {
+  try {
+    const self = await getSelf();
+
+    const followedUsers = db.follow.findMany({
+      where: {
+        followerId: self.id,
+      },
+      include: {
+        following: true,
+      }
+    });
+
+    return followedUsers;
+  } catch {
+    return []
+  }
+
+}
