@@ -22,9 +22,9 @@ export function Logo() {
                     height={32}
                 />
             </div>
-            <div className={cn("hidden lg:block",font.className)}>
+            <div className={cn("hidden lg:block", font.className)}>
                 <p className="text-lg font-semibold">Streamable</p>
-                <p className="text-xs font-normal text-muted-foreground">Let&apos;s play</p>
+                <p className="text-xs text-muted-foreground">Creator dashboard</p>
             </div>
         </div>
     </Link>

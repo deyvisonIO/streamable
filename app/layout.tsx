@@ -23,10 +23,9 @@ export default function RootLayout({
       <html lang="en">
           <body className={inter.className}>
           <ThemeProvider
-            attribute='class'
-            forcedTheme='dark'
-            defaultTheme='dark'
-            storageKey='streamable-theme'
+            attribute="class"
+            forcedTheme="dark"
+            storageKey="streamable-theme"
           >
             {children}
             <Toaster />
