@@ -1,6 +1,5 @@
 import { db } from "./db"
 import { getSelf } from "./auth-service"
-import { User } from "@prisma/client";
 
 export async function getRecommended() {
   let userId;
@@ -12,7 +11,7 @@ export async function getRecommended() {
     userId = null;
   }
 
-  let users: User[] = [];
+  let users = [];
 
   if(userId) {
     users = await db.user.findMany({
@@ -43,7 +42,11 @@ export async function getRecommended() {
         ]
       },
       include: {
-        stream: true,
+        stream: {
+          select: {
+            isLive: true,
+          },
+        }
       },
       orderBy: {
         createdAt: "desc"
@@ -52,7 +55,11 @@ export async function getRecommended() {
   } else {
     users = await db.user.findMany({
       include: {
-        stream: true,
+        stream: {
+          select: {
+            isLive: true,
+          },
+        },
       },
       orderBy: {
         createdAt: "desc"

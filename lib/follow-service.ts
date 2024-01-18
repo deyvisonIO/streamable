@@ -120,7 +120,11 @@ export async function getFollowedUsers() {
       include: {
         following: {
           include: {
-            stream: true,
+            stream: {
+              select: {
+                isLive: true,
+              }
+            },
           },
         },
       },
