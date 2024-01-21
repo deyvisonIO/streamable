@@ -9,6 +9,7 @@ import {
 import { OfflineVideo } from "./offine-video";
 import { LoadingVideo } from "./loading-video";
 import { LiveVideo } from "./live-video";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface videoProps {
   hostName: string,
@@ -36,6 +37,14 @@ export function Video({hostName, hostIdentity}: videoProps) {
   return (
     <div className="aspect-video border-b group relative">
       {content}
+    </div>
+  )
+}
+
+export function VideoSkeleton() {
+  return (
+    <div className="aspect-video border-x border-background">
+      <Skeleton className="h-full w-full rounded-none"/>
     </div>
   )
 }

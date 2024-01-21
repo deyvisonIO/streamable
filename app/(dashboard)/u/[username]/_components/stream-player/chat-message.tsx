@@ -17,7 +17,7 @@ export function ChatMessage({data}: chatMessage) {
       </p>
       <div className="flex flex-wrap items-baseline gap-1 row">
         <p className="text-sm font-semibold whitespace-nowrap">
-          <span className="truncate" style={{ color: color }}>{data.from?.name}</span>
+          <span className="truncate" style={{ color: color }}>{data.from?.name}</span>:
         </p>
         <p className="text-sm break-all">{data.message}</p>
       </div>
