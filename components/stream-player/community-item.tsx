@@ -41,7 +41,7 @@ export function CommunityItem({ hostName, viewerName, participantName, participa
       <p style={{color}}>
         {participantName}
       </p>
-      {isHost && !isSelf && (
+      {!isHost && !isSelf && (
         <Hint label="Block" asChild>
           <Button
             variant="ghost"

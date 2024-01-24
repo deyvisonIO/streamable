@@ -51,7 +51,7 @@ export function ChatForm({ value, onSubmit, onChange, isHidden, isFollowersOnly,
           value={value}
           disabled={isDisabled}
           placeholder="Send a message"
-          className={cn("border-white/20", isFollowersOnly && "rounded-t-none border-t-0")}
+          className={cn("border-white/20", (isFollowersOnly || isDelayed) && "rounded-t-none border-t-0")}
         />
       </div>
       <div className="ml-auto">
