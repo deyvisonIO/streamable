@@ -1,3 +1,4 @@
+import { LiveBadge } from "@/components/ui/live-badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserAvatar } from "@/components/ui/user-avatar";
 import Image from "next/image";
@@ -39,6 +40,11 @@ export function Thumbnail({src, fallback, username, isLive}: thumbnailProps) {
     <div className="group aspect-video relative rounded-md cursor-pointer">
       <div className="rounded-md absolute inset-0 bg-indigo-600 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         {content}
+        {isLive && (
+          <div className="absolute top-2 left-2 group-hover:translate-x-2 group-hover:-translate-y-2 transition transform">
+            <LiveBadge />
+          </div>
+        )}
       </div>
     </div>
   )
