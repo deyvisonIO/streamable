@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import Link from "next/link";
-import { ThumbnaiSkeleton, Thumbnail } from "./thumbnail";
+import { ThumbnaiSkeleton, Thumbnail } from "@/components/thumbnail";
 import { UserAvatar, UserAvatarSkeleton } from "@/components/ui/user-avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 

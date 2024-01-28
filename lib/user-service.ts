@@ -19,8 +19,23 @@ export async function getUserByUsername(username: string) {
     where: {
       username
     },
-    include: {
-      stream: true,
+    select: {
+      id: true,
+      externalUserId: true,
+      username: true,
+      bio: true,
+      imageUrl: true,
+      stream: {
+        select: {
+          id: true,
+          isLive: true,
+          isChatDelayed: true,
+          isChatFollowersOnly: true,
+          isChatEnabled: true,
+          thumbnailUrl: true,
+          name: true,
+        }
+      },
       _count: {
         select: {
           followedBy: true,
