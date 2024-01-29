@@ -13,19 +13,8 @@ const roomService = new RoomServiceClient(
 
 export async function onBlock(id: string) {
   const self = await getSelf();
-  let blockedUser;
+  const blockedUser = await blockUser(id);
 
-  try {
-    blockedUser = await blockUser(id);
-  } catch {
-    // User is guest
-  }
-
-  try {
-    await roomService.removeParticipant(self.id, id);
-  } catch {
-    // User not in the room
-  }
   revalidatePath(`/u/${self.username}/community`)
 
   return blockedUser;

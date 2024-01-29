@@ -64,6 +64,8 @@ export async function followUser(id: string) {
     }
   });
 
+  if (!follow) throw new Error("Internal Error")
+
   return follow;
 }
 
