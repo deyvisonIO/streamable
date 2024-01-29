@@ -27,7 +27,7 @@ export function CommunityItem({ hostName, viewerName, participantName, participa
     if(!participantName || isSelf || isHost) return;
 
     startTransition(() => {
-      toast.promise(onBlock(participantName), {
+      toast.promise(onBlock(participantIdentity), {
         loading: "Loading...",
         success: `Blocked ${participantName}`,
         error: "Something went wrong",

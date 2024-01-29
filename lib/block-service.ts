@@ -1,7 +1,5 @@
 import { db } from "./db"
 import { getSelf } from "./auth-service";
-import { Jua } from "next/font/google";
-
 
 
 export async function isBlockedByUser(id:string) {
@@ -50,13 +48,13 @@ export async function blockUser(id: string) {
   const existingBlock = await db.block.findUnique({
     where: {
       blockerId_blockedId: {
+        blockerId: self.id,
         blockedId: otherUser.id,
-        blockerId: self.id
       }
     }
   })
 
-  if (!!existingBlock) throw new Error("User already blocked!")
+  if (existingBlock) throw new Error("User already blocked!")
 
 
   const block = await db.block.create({
@@ -71,6 +69,7 @@ export async function blockUser(id: string) {
 
   return block;
 }
+
 export async function unblockUser(id: string) {
   const self = await getSelf();
 
@@ -104,4 +103,20 @@ export async function unblockUser(id: string) {
   });
 
   return unblock;
+}
+
+export async function getBlockedUsers() {
+  const self = await getSelf();
+
+  const blockedUsers = await db.block.findMany({
+    where: {
+      blockerId: self.id,
+    },
+    include: {
+      blocked: true,
+    }
+  })
+
+  return blockedUsers;
+
 }
