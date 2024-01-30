@@ -6,6 +6,7 @@ import { AccessToken } from "livekit-server-sdk"
 import { getSelf } from "@/lib/auth-service"
 import { getUserById } from "@/lib/user-service"
 import { isBlockedByUser } from "@/lib/block-service"
+import { envServer } from "@/env"
 
 export async function createViewerToken(hostIdentity: string) {
   let self;
@@ -29,7 +30,7 @@ export async function createViewerToken(hostIdentity: string) {
 
   const isHost = self.id === host.id;
 
-  const token = new AccessToken(process.env.LIVEKIT_API_KEY,process.env.LIVEKIT_API_SECRET, {
+  const token = new AccessToken(envServer.LIVEKIT_API_KEY,process.env.LIVEKIT_API_SECRET, {
     identity: isHost ?  `host-${self.id}` : self.id,
     name: self.username
   });

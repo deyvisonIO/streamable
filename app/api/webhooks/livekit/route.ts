@@ -2,11 +2,11 @@ import { headers } from "next/headers"
 import { WebhookReceiver } from "livekit-server-sdk"
 
 import { db } from "@/lib/db"
-import { join } from "path";
+import { envServer } from "@/env";
 
 const receiver = new WebhookReceiver(
-  process.env.LIVEKIT_API_KEY!,
-  process.env.LIVEKIT_API_SECRET!
+  envServer.LIVEKIT_API_KEY,
+  envServer.LIVEKIT_API_SECRET
 )
 
 export async function POST(req: Request) {
