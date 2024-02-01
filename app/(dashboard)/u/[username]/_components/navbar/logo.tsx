@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -28,5 +29,11 @@ export function Logo() {
             </div>
         </div>
     </Link>
+  )
+}
+
+export function LogoSkeleton() {
+  return (
+    <Skeleton className="w-8 h-8"/>
   )
 }

@@ -2,7 +2,6 @@
 
 import { useViewerToken } from "@/lib/hooks/use-viewer-token"
 import { useChatSidebar } from "@/store/use-chat-sidebar"
-import { Stream, User } from "@prisma/client"
 import { cn } from "@/lib/utils"
 
 import { LiveKitRoom } from "@livekit/components-react"
@@ -12,7 +11,7 @@ import { ChatToggle } from "./chat-toggle"
 import { Header, HeaderSkeleton } from "./header"
 import { InfoCard } from "./info-card"
 import { AboutCard } from "./about-card"
-import { envPublic } from "@/env"
+import { clientEnv } from "@/env/client.mjs"
 
 type CustomStream = {
   id: string,
@@ -56,7 +55,7 @@ export function StreamPlayer({user, stream, isFollowing}: streamPlayerProps) {
       )}
       <LiveKitRoom
         token={token}
-        serverUrl={envPublic.NEXT_PUBLIC_LIVEKIT_WS_URL}
+        serverUrl={clientEnv.NEXT_PUBLIC_LIVEKIT_WS_URL}
         className={cn(
           "grid grid-cols-1 lg:gap-y-0 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6 h-full",
           collapsed && "lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2"

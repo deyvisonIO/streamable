@@ -3,10 +3,10 @@ import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { db } from '@/lib/db'
 import { resetIngresses } from '@/actions/ingress'
-import { envServer } from '@/env'
+import { env } from '@/env/server.mjs'
 
 export async function POST(req: Request) {
-	const WEBHOOK_SECRET = envServer.CLERK_WEBHOOK_SECRET
+	const WEBHOOK_SECRET = env.CLERK_WEBHOOK_SECRET
 
 	if (!WEBHOOK_SECRET) throw new Error('Please add CLERK_WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
 

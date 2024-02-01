@@ -14,15 +14,15 @@ import { TrackSource } from "livekit-server-sdk/dist/proto/livekit_models"
 import { db } from "@/lib/db"
 import { getSelf } from "@/lib/auth-service"
 import { revalidatePath } from "next/cache"
-import { envServer } from "@/env"
+import { env } from "@/env/server.mjs"
 
 const roomService = new RoomServiceClient(
-  envServer.LIVEKIT_API_URL!,
-  envServer.LIVEKIT_API_KEY!,
-  envServer.LIVEKIT_API_SECRET!,
+  env.LIVEKIT_API_URL,
+  env.LIVEKIT_API_KEY,
+  env.LIVEKIT_API_SECRET,
 );
 
-const ingressClient = new IngressClient(envServer.LIVEKIT_API_URL!);
+const ingressClient = new IngressClient(env.LIVEKIT_API_URL!);
 
 export async function resetIngresses(hostIdentity: string) {
   const ingresses = await ingressClient.listIngress({ roomName: hostIdentity });
